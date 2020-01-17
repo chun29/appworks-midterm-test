@@ -18,9 +18,7 @@ class Redux extends React.Component {
             <li key={i}>{title}</li>
           ))}
         </ul>
-        <Link exact to="/">
-          回首頁
-        </Link>
+        <Link to="/">回首頁</Link>
       </React.Fragment>
     );
   }
