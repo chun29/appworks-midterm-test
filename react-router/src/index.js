@@ -28,6 +28,10 @@ class App extends React.Component {
     if (isLoading) {
       return <div>Loading ...</div>;
     }
+    console.log(data);
+    const titles = data.chapters.map(title => title.key);
+    const sections = data.chapters.map(section => section.sections);
+    console.log(sections);
 
     return (
       <Router>
@@ -42,23 +46,20 @@ class App extends React.Component {
               </React.Fragment>
             )}
           />
+
           <Route
-            path="/redux"
-            render={props => (
-              <Redux {...props} data={data.chapters[2].sections} />
-            )}
+            path={"/" + titles[0]}
+            render={props => <Start {...props} data={sections[0]} />}
           />
+
           <Route
-            path="/react"
-            render={props => (
-              <ReactBasic {...props} data={data.chapters[1].sections} />
-            )}
+            path={"/" + titles[1]}
+            render={props => <ReactBasic {...props} data={sections[1]} />}
           />
+
           <Route
-            path="/start"
-            render={props => (
-              <Start {...props} data={data.chapters[0].sections} />
-            )}
+            path={"/" + titles[2]}
+            render={props => <Redux {...props} data={sections[2]} />}
           />
         </div>
       </Router>
